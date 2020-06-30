@@ -27,9 +27,6 @@ class ViewController: UIViewController {
 
     }
     
-
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -105,10 +102,13 @@ class ViewController: UIViewController {
     }()
     
     @objc func clicked(sender:UIButton!) {
+        
+        let userDefaultStore = UserDefaults.standard
+        userDefaultStore.set(catTextField.text, forKey: "key_Value")
         let nextVC = NextViewController()
         navigationController?.pushViewController(nextVC, animated: true)
         print("Button Clicked")
-        
+
     }
     
     private func configureTextFields(){
