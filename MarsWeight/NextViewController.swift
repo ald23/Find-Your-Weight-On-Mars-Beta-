@@ -10,17 +10,34 @@ import Foundation
 import UIKit
 
 class NextViewController: UIViewController{
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // Make the navigation bar background clear
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+    }
+
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        label.center = CGPoint(x: 200, y: 300)
-        label.textAlignment = .center
-        label.text = "I'm a test label"
         self.view.addSubview(catImageView)
+        self.view.addSubview(catTextView)
+
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        label.center = CGPoint(x: 200, y: 350)
+        label.textAlignment = .center
+        label.font = UIFont(name: "AppleSDGothicNeo-Bold" , size: 42.0)
         self.view.addSubview(label)
+        
+        
+        
+        let userDefault = UserDefaults.standard
+        label.text = userDefault.string(forKey: "key_Value")!
+        label.isUserInteractionEnabled = false
 
 //        setupLayout()
     }
@@ -31,6 +48,22 @@ class NextViewController: UIViewController{
         backgroundImage.image = UIImage(named: "4")
         return backgroundImage
     }()
+    
+    
+    let catTextView: UILabel = {
+        let mainText = UILabel(frame: CGRect(x: 0, y: 0, width: 800, height: 800))
+        mainText.center = CGPoint(x: 210, y: 280)
+        mainText.textAlignment = NSTextAlignment.center
+        
+        mainText.text = "YOUR WEIGHT IS"
+        mainText.font = UIFont(name: "AppleSDGothicNeo-Bold" , size: 35.0)
+        return mainText
+    }()
+    
+
+
+    
+
 
     
 //    private func setupLayout(){
